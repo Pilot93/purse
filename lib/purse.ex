@@ -8,16 +8,10 @@ defmodule Purse do
 
   ## Examples
 
-      iex> Purse.hello()
-      :world
+  iex> Purse.hello()
+  :world
 
   """
-  def hello do
-    :world
-  end
-end
-
-defmodule TodoServer do
   def start do
     ServerProcess.start(TodoServer)
   end

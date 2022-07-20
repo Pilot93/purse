@@ -1,4 +1,4 @@
-defmodule Purse do
+defmodule PurseServer do
   @moduledoc """
   Documentation for `Purse`.
   """
@@ -13,7 +13,7 @@ defmodule Purse do
 
   """
   def start do
-    ServerProcess.start(TodoServer)
+    ServerProcess.start(PurseServer)
   end
 
   def add_entry(todo_server, new_entry) do

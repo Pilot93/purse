@@ -34,16 +34,28 @@ defmodule PurseServer do
   end
 end
 
-defmodule TodoList do
-  defstruct auto_id: 1, entries: %{}
+defmodule Purse do
+  @moduledoc """Implement purse that can hold money and can deposit or withdraw
+  in different currencies"""
+  defstruct auto_id: 1, accounts: %{}
 
-  def new(entries \\ []) do
+  def new(accounts \\ []) do
     Enum.reduce(
-      entries,
-      %TodoList{},
-      &add_entry(&2, &1)
+      accounts,
+      %Purse{},
+      &add_account(&2, &1)
     )
+    IO.puts("You can deposit or withdraw in currencies: HIV, PIV, SIC")
   end
+
+  def deposit(purse, currency, amount) do
+  end
+
+  def withdraw(purse, currency, amount) do
+  end
+end
+
+defmodule TodoList do
 
   def add_entry(todo_list, entry) do
     entry = Map.put(entry, :id, todo_list.auto_id)

@@ -1,8 +1,8 @@
 defmodule Purse do
   use GenServer
 
-  def start_link do
-    GenServer.start_link(__MODULE__, nil, name: __MODULE__)
+  def start_link(name) do
+    GenServer.start_link(__MODULE__, name, name: name)
   end
 
   def put(key, value) do
@@ -17,8 +17,9 @@ defmodule Purse do
   end
 
   @impl GenServer
-  def init(_) do
-    :ets.new(__MODULE__, [:named_table, :protected, write_concurrency: true])
-    {:ok, nil}
+  def init(name) do
+    file = String.to_charlist("/tmp/purse_#{name}")
+    table = :dets.open_file(name, [{:file, file}])
+    {:ok, %{table: table}}
   end
 end
